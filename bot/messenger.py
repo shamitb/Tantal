@@ -3,12 +3,9 @@
 import logging
 import random
 
-from aylienapiclient import textapi
-
-client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
-
-sentiment = client.Sentiment({'text': 'John is a very good football player!'})
-
+#from aylienapiclient import textapi
+#client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
+#sentiment = client.Sentiment({'text': 'John is a very good football player!'})
 
 logger = logging.getLogger(__name__)
 
