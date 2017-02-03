@@ -3,6 +3,13 @@
 import logging
 import random
 
+from aylienapiclient import textapi
+
+client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
+
+sentiment = client.Sentiment({'text': 'John is a very good football player!'})
+
+
 logger = logging.getLogger(__name__)
 
 
@@ -31,6 +38,13 @@ class Messenger(object):
         greetings = ['Hi', 'Hello', 'Nice to meet you', 'Howdy', 'Salutations']
         txt = '{}, <@{}>!'.format(random.choice(greetings), user_id)
         self.send_message(channel_id, txt)
+
+    def write_analytics(self, channel_id, user_id):
+        url = "https://www.wired.com/2016/12/spacexs-year-fiery-triumphs-explosive-failure"
+        txt = client.ClassifyByTaxonomy({"url": url, "taxonomy": "iab-qag"})
+        self.send_message(channel_id, txt)
+
+        #print sentiment
 
     def write_prompt(self, channel_id):
         bot_uid = self.clients.bot_user_id()
