@@ -3,9 +3,8 @@
 import logging
 import random
 
-#from aylienapiclient import textapi
-#client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
-#sentiment = client.Sentiment({'text': 'John is a very good football player!'})
+import Algorithmia
+client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
 
 logger = logging.getLogger(__name__)
 
@@ -36,10 +35,11 @@ class Messenger(object):
         txt = '{}, <@{}>!'.format(random.choice(greetings), user_id)
         self.send_message(channel_id, txt)
 
-    def write_analytics(self, channel_id, user_id):
-        #url = "https://www.wired.com/2016/12/spacexs-year-fiery-triumphs-explosive-failure"
-        #txt = client.ClassifyByTaxonomy({"url": url, "taxonomy": "iab-qag"})
+    def write_analytics(self, channel_id, msg):
         txt = "TEXT ANALYTICS using NATURAL LANGUAGE PROCESSING ..."
+        algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
+        entities = algo.pipe(msg)
+        txt = entities.result
         self.send_message(channel_id, txt)
 
     def write_prompt(self, channel_id):
