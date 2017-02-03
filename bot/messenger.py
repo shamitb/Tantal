@@ -36,7 +36,6 @@ class Messenger(object):
         self.send_message(channel_id, txt)
 
     def write_analytics(self, channel_id, msg):
-        txt = "TEXT ANALYTICS using NATURAL LANGUAGE PROCESSING ..."
         algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
         entities = algo.pipe(msg)
         txt = entities.result
