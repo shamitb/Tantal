@@ -40,8 +40,9 @@ class Messenger(object):
         self.send_message(channel_id, txt)
 
     def write_analytics(self, channel_id, user_id):
-        url = "https://www.wired.com/2016/12/spacexs-year-fiery-triumphs-explosive-failure"
-        txt = client.ClassifyByTaxonomy({"url": url, "taxonomy": "iab-qag"})
+        #url = "https://www.wired.com/2016/12/spacexs-year-fiery-triumphs-explosive-failure"
+        #txt = client.ClassifyByTaxonomy({"url": url, "taxonomy": "iab-qag"})
+        txt = "TEXT ANALYTICS using NATURAL LANGUAGE PROCESSING ..."
         self.send_message(channel_id, txt)
 
     def write_prompt(self, channel_id):
