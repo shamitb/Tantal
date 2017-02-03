@@ -44,8 +44,6 @@ class Messenger(object):
         txt = client.ClassifyByTaxonomy({"url": url, "taxonomy": "iab-qag"})
         self.send_message(channel_id, txt)
 
-        #print sentiment
-
     def write_prompt(self, channel_id):
         bot_uid = self.clients.bot_user_id()
         txt = "I'm sorry, I didn't quite understand... Can I help you? (e.g. `<@" + bot_uid + "> help`)"
