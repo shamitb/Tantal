@@ -61,10 +61,7 @@ class RtmEventHandler(object):
                 elif 'echo' in msg_txt:
                     self.msg_writer.send_message(event['channel'], msg_txt)
                 elif 'analytics' in msg_txt:
-                    url = "https://www.wired.com/2016/12/spacexs-year-fiery-triumphs-explosive-failure"
-                    classifications = client.ClassifyByTaxonomy({"url": url, "taxonomy": "iab-qag"})
-                    for category in classifications['categories']:
-                        print category['label']
+                    self.msg_writer.write_analytics(event['channel'])
                 else:
                     self.msg_writer.write_prompt(event['channel'])
 
