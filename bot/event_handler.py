@@ -58,7 +58,7 @@ class RtmEventHandler(object):
                 elif 'echo' in msg_txt:
                     self.msg_writer.send_message(event['channel'], msg_txt)
                 elif 'analytics' in msg_txt:
-                    self.msg_writer.write_analytics(event['channel'])
+                    self.msg_writer.write_analytics(event['channel'], event['user'])
                 else:
                     self.msg_writer.write_prompt(event['channel'])
 
