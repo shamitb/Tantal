@@ -10,7 +10,7 @@ from slack_bot import SlackBot
 from slack_bot import spawn_bot
 
 from aylienapiclient import textapi
-client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
+import Algorithmia
 
 
 logger = logging.getLogger(__name__)
