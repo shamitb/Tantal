@@ -9,7 +9,6 @@ from beepboop import bot_manager
 from slack_bot import SlackBot
 from slack_bot import spawn_bot
 
-from aylienapiclient import textapi
 import Algorithmia
 
 
