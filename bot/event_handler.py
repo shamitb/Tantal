@@ -2,6 +2,16 @@ import json
 import logging
 import re
 
+from aylienapiclient import textapi
+
+client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
+
+sentiment = client.Sentiment({'text': 'John is a very good football player!'})
+
+#print sentiment
+
+
+
 logger = logging.getLogger(__name__)
 
 
@@ -50,6 +60,11 @@ class RtmEventHandler(object):
                     self.msg_writer.demo_attachment(event['channel'])
                 elif 'echo' in msg_txt:
                     self.msg_writer.send_message(event['channel'], msg_txt)
+                elif 'analytics' in msg_txt:
+                    url = "https://www.wired.com/2016/12/spacexs-year-fiery-triumphs-explosive-failure"
+                    classifications = client.ClassifyByTaxonomy({"url": url, "taxonomy": "iab-qag"})
+                    for category in classifications['categories']:
+                        print category['label']
                 else:
                     self.msg_writer.write_prompt(event['channel'])
 
