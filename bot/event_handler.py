@@ -44,11 +44,10 @@ class RtmEventHandler(object):
 
             if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
                 txt_b = TextBlob(msg_txt)
-
-                response = zen.words
+                response = txt_b.words
                 self.msg_writer.send_message(event['channel'], response)
 
             return
-            
+
         def _is_direct_message(self, channel_id):
             return channel_id.startswith('D')
