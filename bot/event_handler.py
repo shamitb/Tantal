@@ -50,7 +50,7 @@ class RtmEventHandler(object):
                 client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
                 #response = txt_b.tags
                 algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
-                entities = algo.pipe(text)
+                entities = algo.pipe(msg_txt)
                 response = entities.result
                 self.msg_writer.send_message(event['channel'], response)
  
