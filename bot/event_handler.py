@@ -43,31 +43,39 @@ class RtmEventHandler(object):
         if not self.clients.is_message_from_me(event['user']):
 
             msg_txt = event['text']
-
+            
             if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
-#                txt_b = TextBlob(msg_txt)
-#                response = txt_b.tags
-#                self.msg_writer.send_message(event['channel'], response)
-                client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
-                #response = txt_b.tags
-                #algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
-                #entities = algo.pipe(msg_txt)
-                algo = client.algo('nlp/AutoTag/1.0.0')
-                response2 = algo.pipe(msg_txt)
-                response = response2.result[0]
-                #entities.result[0][0][1]
-                
-                client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
-                sentiment = client.Sentiment({"text": msg_txt})
-                
-                classifications = client.ClassifyByTaxonomy({"text": msg_txt, "taxonomy": "iab-qag"})
-                sent_str = ""
-                for category in classifications['categories']:
-                    sent_str += category['label'] + ", "
-                sent_str = sent_str[:-1]
-                response = sent_str
+                # e.g. user typed: "@pybot tell me a joke!"
+                if '/sentiment' in msg_txt:
+                    self.msg_writer.write_analytics(event['channel'], msg_txt)
+                    #if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
+#                   txt_b = TextBlob(msg_txt)
+#                   response = txt_b.tags
+#                   self.msg_writer.send_message(event['channel'], response)
+                    client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
+                    #response = txt_b.tags
+                    #algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
+                    #entities = algo.pipe(msg_txt)
+                    algo = client.algo('nlp/AutoTag/1.0.0')
+                    response2 = algo.pipe(msg_txt)
+                    response = response2.result[0]
+                    client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
+                    sentiment = client.Sentiment({"text": msg_txt})
+                    self.msg_writer.send_message(event['channel'], sentiment['polarity'])
 
-                self.msg_writer.send_message(event['channel'], response)
+                elif '/classify' in msg_txt:
+                    
+                    classifications = client.ClassifyByTaxonomy({"text": msg_txt, "taxonomy": "iab-qag"})
+                    sent_str = ""
+                    for category in classifications['categories']:
+                        sent_str += category['label'] + ", "
+                    sent_str = sent_str[:-1]
+                    response = sent_str
+                    self.msg_writer.send_message(event['channel'], response)
+
+                else:
+                    self.msg_writer.send_message(event['channel'], "What do you expect me to do?")              
+
                 return
 
         def _is_direct_message(self, channel_id):
