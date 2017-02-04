@@ -5,6 +5,7 @@ import Algorithmia
 
 from textblob import TextBlob
 from text_corpus import TextCorpus
+from aylienapiclient import textapi
 
 logger = logging.getLogger(__name__)
 
@@ -55,6 +56,10 @@ class RtmEventHandler(object):
                 response2 = algo.pipe(msg_txt)
                 response = response2.result[0]
                 #entities.result[0][0][1]
+                
+                client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
+                sentiment = client.Sentiment(msg_txt)
+
                 self.msg_writer.send_message(event['channel'], response)
                 return
 
