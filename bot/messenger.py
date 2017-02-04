@@ -3,9 +3,6 @@
 import logging
 import random
 
-import Algorithmia
-client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
-
 logger = logging.getLogger(__name__)
 
 
