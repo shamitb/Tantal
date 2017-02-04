@@ -50,7 +50,7 @@ class RtmEventHandler(object):
                     client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
                     sentiment = client.Sentiment({"text": msg_txt})
                     str = sentiment['polarity']
-                    str2 = "%10.3f" % sentiment['polarity_confidence']
+                    str2 = " - %3.3f" % sentiment['polarity_confidence']
                     self.msg_writer.send_message(event['channel'], str)
                 elif '/tag' in msg_txt:
                     self.msg_writer.write_analytics(event['channel'], msg_txt)
