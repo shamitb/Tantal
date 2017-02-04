@@ -52,7 +52,7 @@ class RtmEventHandler(object):
                 #algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
                 #entities = algo.pipe(msg_txt)
                 algo = client.algo('nlp/AutoTag/1.0.0')
-                response2 = algo.pipe(input)
+                response2 = algo.pipe(msg_txt)
                 response = response2.result[0]
                 #entities.result[0][0][1]
                 self.msg_writer.send_message(event['channel'], response)
