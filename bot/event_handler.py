@@ -58,7 +58,7 @@ class RtmEventHandler(object):
                 #entities.result[0][0][1]
                 
                 client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
-                sentiment = client.Sentiment(msg_txt)
+                sentiment = client.Sentiment({"text": msg_txt})
 
                 self.msg_writer.send_message(event['channel'], response)
                 return
