@@ -1,6 +1,6 @@
-name: Donnie Drumpf Bot
-description: A bot that is trained to respond from Trump's own words.
-avatar: resources/trump_yelling.png
+name: Tantal
+description: A bot that implements NLP.
+avatar: resources/avatar.png
 background: resources/background.png
 config:
   - name: LOG_LEVEL
