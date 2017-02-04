@@ -1,11 +1,8 @@
-# -*- coding: utf-8 -*-
-
 import logging
 import random
-import Algorithmia
 
 logger = logging.getLogger(__name__)
-client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
+
 
 class Messenger(object):
     def __init__(self, slack_clients):
@@ -15,9 +12,9 @@ class Messenger(object):
         # in the case of Group and Private channels, RTM channel payload is a complex dictionary
         if isinstance(channel_id, dict):
             channel_id = channel_id['id']
-        logger.debug('Sending msg: %s to channel: %s' % (msg, channel_id))
+        logger.debug('Sending msg: {} to channel: {}'.format(msg, channel_id))
         channel = self.clients.rtm.server.channels.find(channel_id)
-        channel.send_message(msg)
+        channel.send_message("{}".format(msg.encode('ascii', 'ignore')))
 
     def write_help_message(self, channel_id):
         bot_uid = self.clients.bot_user_id()
@@ -31,12 +28,6 @@ class Messenger(object):
     def write_greeting(self, channel_id, user_id):
         greetings = ['Hi', 'Hello', 'Nice to meet you', 'Howdy', 'Salutations']
         txt = '{}, <@{}>!'.format(random.choice(greetings), user_id)
-        self.send_message(channel_id, txt)
-
-    def write_analytics(self, channel_id, msg):
-        algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
-        entities = algo.pipe(msg)
-        txt = entities.result
         self.send_message(channel_id, txt)
 
     def write_prompt(self, channel_id):

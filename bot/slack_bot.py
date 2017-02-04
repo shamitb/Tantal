@@ -1,10 +1,13 @@
 import time
 import logging
 import traceback
+import os
+from os.path import isfile, join
 
 from slack_clients import SlackClients
 from messenger import Messenger
 from event_handler import RtmEventHandler
+from text_corpus import gen_text_corpus
 
 logger = logging.getLogger(__name__)
 
@@ -24,6 +27,15 @@ class SlackBot(object):
         self.keep_running = True
         if token is not None:
             self.clients = SlackClients(token)
+
+        training_files = []
+        for f in os.listdir('resources/training'):
+             if isfile(join('resources/training', f)):
+                 training_files.append(join('resources/training', f))
+
+        self.trump_corpus = gen_text_corpus(training_files)
+        logger.debug('first trump sent: {}'.format(self.trump_corpus.seq_sent[0]))
+
 
     def start(self, resource):
         """Creates Slack Web and RTM clients for the given Resource
@@ -45,7 +57,7 @@ class SlackBot(object):
                 self.clients.rtm.server.domain))
 
             msg_writer = Messenger(self.clients)
-            event_handler = RtmEventHandler(self.clients, msg_writer)
+            event_handler = RtmEventHandler(self.clients, msg_writer, self.trump_corpus)
 
             while self.keep_running:
                 for event in self.clients.rtm.rtm_read():
@@ -54,11 +66,11 @@ class SlackBot(object):
                     except:
                         err_msg = traceback.format_exc()
                         logging.error('Unexpected error: {}'.format(err_msg))
-                        msg_writer.write_error(event['channel'], err_msg)
+                        # ignore: msg_writer.write_error(event['channel'], err_msg)
                         continue
 
                 self._auto_ping()
-                time.sleep(.1)
+                time.sleep(.5)
 
         else:
             logger.error('Failed to connect to RTM client with token: {}'.format(self.clients.token))

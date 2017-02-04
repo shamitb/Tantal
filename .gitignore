@@ -1,6 +1,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*$py.class
 
 # C extensions
 *.so
@@ -8,8 +9,6 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
-venv/
-.idea/
 build/
 develop-eggs/
 dist/
@@ -44,6 +43,7 @@ htmlcov/
 nosetests.xml
 coverage.xml
 *,cover
+.hypothesis/
 
 # Translations
 *.mo
@@ -58,5 +58,5 @@ docs/_build/
 # PyBuilder
 target/
 
-.DS_Store
-plot.png
+#Ipython Notebook
+.ipynb_checkpoints

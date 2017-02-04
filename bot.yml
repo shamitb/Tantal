@@ -1,16 +1,11 @@
-name: Beepboop Starterbot
-description: A simple Python bot sample for Beep Boop
-avatar: resources/avatar.png
+name: Donnie Drumpf Bot
+description: A bot that is trained to respond from Trump's own words.
+avatar: resources/trump_yelling.png
 background: resources/background.png
 config:
   - name: LOG_LEVEL
     friendly_name: Severity level to show for logging.
     info: See https://docs.python.org/2/library/logging.html#levels
     default: DEBUG
-  - name: SECRET
-    friendly_name: Shhhh
-    info: This is an secret option
-    type: secret
-    default: not secret though
 screenshots:
   - screenshot: resources/screenshot1.png

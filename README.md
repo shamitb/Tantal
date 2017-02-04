@@ -1,4 +1,4 @@
-Tantal-bot
+starter-python-bot
 =============
 
 ## Overview
