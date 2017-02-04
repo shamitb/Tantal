@@ -61,7 +61,11 @@ class RtmEventHandler(object):
                 sentiment = client.Sentiment({"text": msg_txt})
                 
                 classifications = client.ClassifyByTaxonomy({"text": msg_txt, "taxonomy": "iab-qag"})
-                response = ', '.join(str(d) for d in classifications)
+                sent_str = ""
+                for category in classifications['categories']:
+                    sent_str += category['label'] + ", "
+                sent_str = sent_str[:-1]
+                response = sent_str
 
                 self.msg_writer.send_message(event['channel'], response)
                 return
