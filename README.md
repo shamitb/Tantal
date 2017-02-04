@@ -3,7 +3,9 @@ Tantal-bot
 
 ## Overview
 A simple starting point for creating a Beep Boop hostable, Python based Slack bot.
+
 TextBlob used - https://textblob.readthedocs.io/en/dev/
+
 TextBlob is a Python library for processing textual data. It provides a simple API for diving into common natural language processing (NLP) tasks such as part-of-speech tagging, noun phrase extraction, sentiment analysis, classification, translation, and more.
 
 Visit [Beep Boop](https://beepboophq.com/docs/article/overview) to get the scoop on the the Beep Boop hosting platform. The Slack API documentation can be found [here](https://api.slack.com/).
