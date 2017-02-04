@@ -2,9 +2,10 @@
 
 import logging
 import random
+import Algorithmia
 
 logger = logging.getLogger(__name__)
-
+client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
 
 class Messenger(object):
     def __init__(self, slack_clients):
