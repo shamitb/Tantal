@@ -1,6 +1,7 @@
 import json
 import logging
 import random
+import Algorithmia
 
 from textblob import TextBlob
 from text_corpus import TextCorpus
@@ -43,9 +44,16 @@ class RtmEventHandler(object):
             msg_txt = event['text']
 
             if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
-                txt_b = TextBlob(msg_txt)
-                response = txt_b.tags
+#                txt_b = TextBlob(msg_txt)
+#                response = txt_b.tags
+#                self.msg_writer.send_message(event['channel'], response)
+                client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
+                #response = txt_b.tags
+                algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
+                entities = algo.pipe(text)
+                response = entities.result
                 self.msg_writer.send_message(event['channel'], response)
+ 
 
             return
 
