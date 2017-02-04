@@ -59,6 +59,9 @@ class RtmEventHandler(object):
                 
                 client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
                 sentiment = client.Sentiment({"text": msg_txt})
+                
+                classifications = client.ClassifyByTaxonomy({"text": msg_txt, "taxonomy": "iab-qag"})
+                response = classifications[0]
 
                 self.msg_writer.send_message(event['channel'], response)
                 return
