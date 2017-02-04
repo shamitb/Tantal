@@ -51,7 +51,8 @@ class RtmEventHandler(object):
                 #response = txt_b.tags
                 algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
                 entities = algo.pipe(msg_txt)
-                response = entities.result[0][0][1]
+                response = msg_txt
+                #entities.result[0][0][1]
                 self.msg_writer.send_message(event['channel'], response)
                 return
 
