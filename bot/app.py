@@ -9,7 +9,7 @@ from beepboop import bot_manager
 from slack_bot import SlackBot
 from slack_bot import spawn_bot
 
-#import Algorithmia
+import Algorithmia
 client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
 
 logger = logging.getLogger(__name__)
