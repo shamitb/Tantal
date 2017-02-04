@@ -52,6 +52,8 @@ class RtmEventHandler(object):
                 algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
                 entities = algo.pipe(msg_txt)
                 response = entities.result[0][0][0]
+                while i < len(a):
+                response.append(a[i])
                 self.msg_writer.send_message(event['channel'], response)
                 return
 
