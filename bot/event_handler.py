@@ -49,8 +49,9 @@ class RtmEventHandler(object):
                 if '/sentiment' in msg_txt:
                     client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
                     sentiment = client.Sentiment({"text": msg_txt})
-                    self.msg_writer.send_message(event['channel'], sentiment['polarity'])
-
+                    str = sentiment['polarity']
+                    str2 = "%10.3f" % sentiment['polarity_confidence']
+                    self.msg_writer.send_message(event['channel'], str)
                 elif '/tag' in msg_txt:
                     self.msg_writer.write_analytics(event['channel'], msg_txt)
                     #if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
