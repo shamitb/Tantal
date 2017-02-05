@@ -77,7 +77,7 @@ class RtmEventHandler(object):
                 self.msg_writer.send_message(event['channel'], response)
 
             else:
-                self.msg_writer.send_message(event['channel'], "What do you expect me to do?")              
+                self.msg_writer.send_message(event['channel'], msg_txt)              
 
             return
 
