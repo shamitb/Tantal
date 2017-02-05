@@ -51,11 +51,11 @@ class Messenger(object):
         txt = "Beep Beep Boop is a ridiculously simple hosting platform for your Slackbots."
         attachment = {
             "pretext": "We bring bots to life. :sunglasses: :thumbsup:",
-            "title": "Host, deploy and share your bot in seconds.",
+            "title": "Text Analytics bot here!",
             "title_link": "https://beepboophq.com/",
             "text": txt,
             "fallback": txt,
-            "image_url": "https://storage.googleapis.com/beepboophq/_assets/bot-1.22f6fb.png",
+            "image_url": "http://www.logospike.com/wp-content/uploads/2015/11/T_Logo_02.jpg",
             "color": "#7CD197",
         }
         self.clients.web.chat.post_message(channel_id, txt, attachments=[attachment], as_user='true')
