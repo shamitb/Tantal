@@ -44,7 +44,7 @@ class RtmEventHandler(object):
 
             msg_txt = event['text']
             
-            if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
+            #if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
                 # e.g. user typed: "@pybot tell me a joke!"
                 if '/sentiment' in msg_txt:
                     client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
