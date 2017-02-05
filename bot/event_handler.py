@@ -46,8 +46,8 @@ class RtmEventHandler(object):
 
             msg_txt = event['text']
 
-            if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
-                txt_b = TextBlob(msg_txt)
+            #if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
+                #txt_b = TextBlob(msg_txt)
             
             #if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
                 # e.g. user typed: "@pybot tell me a joke!"
