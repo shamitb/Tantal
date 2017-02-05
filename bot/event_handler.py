@@ -54,7 +54,7 @@ class RtmEventHandler(object):
                     str += str2
                     self.msg_writer.send_message(event['channel'], str)
                 elif '/tag' in msg_txt:
-                    self.msg_writer.write_analytics(event['channel'], msg_txt)
+                    #self.msg_writer.write_analytics(event['channel'], msg_txt)
                     #if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
                     #txt_b = TextBlob(msg_txt)
 #                   response = txt_b.tags
