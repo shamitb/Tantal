@@ -71,6 +71,19 @@ class RtmEventHandler(object):
                 self.msg_writer.send_message(event['channel'], response)
                 #algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
                 #entities = algo.pipe(msg_txt)
+            elif '/entity' in msg_txt:
+                #self.msg_writer.write_analytics(event['channel'], msg_txt)
+                #if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
+                #txt_b = TextBlob(msg_txt)
+#                   response = txt_b.tags
+#                   self.msg_writer.send_message(event['channel'], response)
+                client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
+                algo = client.algo('nlp/AutoTag/1.0.0')
+                response2 = algo.pipe(msg_txt)
+                response = response2.result[0]
+                self.msg_writer.send_message(event['channel'], response)
+                #algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
+                #entities = algo.pipe(msg_txt)            
             elif '/classify' in msg_txt:
                 client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
                 classifications = client.ClassifyByTaxonomy({"text": msg_txt, "taxonomy": "iab-qag"})
