@@ -56,17 +56,15 @@ class SlackBot(object):
                 self.clients.rtm.server.login_data['team']['name'],
                 self.clients.rtm.server.domain))
 
-
-            logging.info('Before')
             msg_writer = Messenger(self.clients)
             event_handler = RtmEventHandler(self.clients, msg_writer)
-            logging.info('After')
-
 
             while self.keep_running:
                 for event in self.clients.rtm.rtm_read():
                     try:
+                        logging.info('After')
                         event_handler.handle(event)
+                        logging.info('Before')
                     except:
                         err_msg = traceback.format_exc()
                         logging.error('Unexpected error: {}'.format(err_msg))
