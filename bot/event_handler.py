@@ -11,10 +11,10 @@ logger = logging.getLogger(__name__)
 
 
 class RtmEventHandler(object):
-    def __init__(self, slack_clients, msg_writer, trump_corpus):
+    def __init__(self, slack_clients, msg_writer):
         self.clients = slack_clients
         self.msg_writer = msg_writer
-        self.trump_corpus = trump_corpus
+        #self.trump_corpus = trump_corpus
 
     def handle(self, event):
 
