@@ -57,10 +57,10 @@ class SlackBot(object):
                 self.clients.rtm.server.domain))
 
 
-            logger.debug('Before')
+            logging.info('Before')
             msg_writer = Messenger(self.clients)
             event_handler = RtmEventHandler(self.clients, msg_writer)
-            logger.debug('After')
+            logging.info('After')
 
 
             while self.keep_running:
