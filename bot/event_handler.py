@@ -29,14 +29,6 @@ class RtmEventHandler(object):
         if event_type == 'message':
             # message was sent to channel
             self._handle_message(event)
-        elif event_type == 'channel_joined':
-            # you joined a channel
-            self.msg_writer.send_message(event['channel'], "Let's make America great again!")
-        elif event_type == 'group_joined':
-            # you joined a private group
-            self.msg_writer.write_help_message(event['channel'])
-        elif event_type == 'file_shared':
-            self.msg_writer.send_message(event['channel'], "Got your file, thanks!")
         else:
             pass
 
