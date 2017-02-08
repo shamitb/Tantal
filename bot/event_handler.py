@@ -104,4 +104,18 @@ class RtmEventHandler(object):
             return
 
         def _is_direct_message(self, channel_id):
+            client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
+            algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
+            entities = algo.pipe(msg_txt)
+            str_final = ""
+            count = 0;
+            for inner_l in entities.result:
+                for item in inner_l:
+                    if count == 0:
+                        pass
+                    else:
+                        str = item[0] + " - " + item[1] + ", "
+                    str_final += str
+                    count = count + 1    
+            self.msg_writer.send_message(event['channel'], str_final)
             return channel_id.startswith('D')
