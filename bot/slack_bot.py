@@ -62,9 +62,9 @@ class SlackBot(object):
             while self.keep_running:
                 for event in self.clients.rtm.rtm_read():
                     try:
-                        logging.info('Before Before Before')
+                        #logging.info('Before Before Before')
                         event_handler.handle(event)
-                        logging.info('After After After')                        
+                        #logging.info('After After After')                        
 
                     except:
                         err_msg = traceback.format_exc()
