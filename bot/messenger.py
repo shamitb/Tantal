@@ -18,7 +18,7 @@ class Messenger(object):
 
     def write_help_message(self, channel_id):
         bot_uid = self.clients.bot_user_id()
-        txt = '{}\n{}\n{}\n{}\n{}\n{}'.format(
+        txt = '{}\n{}\n{}\n{}'.format(
             "> `<@" + bot_uid + "> classify [text]` - Classify the text into different topics",
             "> `<@" + bot_uid + "> entity [text]` - Extract entities such as Organization, Location, person etc from the text",
             "> `<@" + bot_uid + "> sentiment [text]` - Retrieve the sentiment from the text",
