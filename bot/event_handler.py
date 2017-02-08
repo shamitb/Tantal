@@ -73,7 +73,7 @@ class RtmEventHandler(object):
                 for inner_l in entities.result:
                     for item in inner_l:
                         if count == 0:
-                            #Do nothing
+                            pass
                         else:
                             str = item[0] + " - " + item[1] + ", "
                             str_final += str
