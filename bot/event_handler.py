@@ -43,14 +43,14 @@ class RtmEventHandler(object):
             
             #if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
                 # e.g. user typed: "@pybot tell me a joke!"
-            if '/sentiment' in msg_txt:
+            if 'sentiment' in msg_txt:
                 client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
                 sentiment = client.Sentiment({"text": msg_txt})
                 str = sentiment['polarity']
                 str2 = " - %3.3f" % sentiment['polarity_confidence']
                 str += str2
                 self.msg_writer.send_message(event['channel'], str)
-            elif '/tag' in msg_txt:
+            elif 'tag' in msg_txt:
                 #self.msg_writer.write_analytics(event['channel'], msg_txt)
                 #if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
                 #txt_b = TextBlob(msg_txt)
@@ -63,7 +63,7 @@ class RtmEventHandler(object):
                 self.msg_writer.send_message(event['channel'], response)
                 #algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
                 #entities = algo.pipe(msg_txt)
-            elif '/entity' in msg_txt:
+            elif 'entity' in msg_txt:
                 client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
                 algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
                 entities = algo.pipe(msg_txt)
@@ -81,7 +81,7 @@ class RtmEventHandler(object):
                 self.msg_writer.send_message(event['channel'], str_final)
                 #algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
                 #entities = algo.pipe(msg_txt)            
-            elif '/classify' in msg_txt:
+            elif 'classify' in msg_txt:
                 client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
                 classifications = client.ClassifyByTaxonomy({"text": msg_txt, "taxonomy": "iab-qag"})
                 sent_str = ""
