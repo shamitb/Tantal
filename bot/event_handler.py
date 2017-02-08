@@ -72,9 +72,9 @@ class RtmEventHandler(object):
                 count = 0;
                 for inner_l in entities.result:
                     for item in inner_l:
-                        if count == 0
+                        if count == 0:
                             #Do nothing
-                        else
+                        else:
                             str = item[0] + " - " + item[1] + ", "
                             str_final += str
                         count = count + 1    
