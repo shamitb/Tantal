@@ -22,9 +22,9 @@ class Messenger(object):
             "I'm your friendly Slack bot written in Python.  I'll *_respond_* to the following commands:",
             "> `hi <@" + bot_uid + ">` - I'll respond with a randomized greeting mentioning your user. :wave:",
             "> `<@" + bot_uid + "> classify [text]` - Classify the text into different topics",
-            "> `<@" + bot_uid + "> entity [text]` - Extract entities such as Organization, Location, person etc from the text"
-            "> `<@" + bot_uid + "> sentiment [text]` - Retrieve the sentiment from the text"
-            "> `<@" + bot_uid + "> tag [text]` - Auto-tag the text"
+            "> `<@" + bot_uid + "> entity [text]` - Extract entities such as Organization, Location, person etc from the text",
+            "> `<@" + bot_uid + "> sentiment [text]` - Retrieve the sentiment from the text",
+            "> `<@" + bot_uid + "> tag [text]` - Auto-tag the text",
             "> `<@" + bot_uid + "> attachment` - I'll demo a post with an attachment using the Web API. :paperclip:")
         self.send_message(channel_id, txt)
 
