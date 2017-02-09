@@ -88,7 +88,7 @@ class RtmEventHandler(object):
                 count = 0;
                 for inner_l in entities.result:
                     for item in inner_l:
-                        if count == 0 and !self._is_direct_message(event['channel']):
+                        if count == 0 and not self._is_direct_message(event['channel']):
                             pass
                         else:
                             str = item[0] + " - " + item[1] + ", "
