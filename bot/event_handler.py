@@ -64,14 +64,19 @@ class RtmEventHandler(object):
                 #txt_b = TextBlob(msg_txt)
 #                   response = txt_b.tags
 #                   self.msg_writer.send_message(event['channel'], response)
+                count = 0;
                 client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')            
                 algo = client.algo('nlp/AutoTag/1.0.0')
                 tags = algo.pipe(msg_txt)
                 str_final = ""
                 #print entities.result
                 for item in tags.result:
-                    str_final += item
-                    str_final += ", "
+                    if count == 0:
+                        pass
+                    else:
+                        str_final += item
+                        str_final += ", "
+                    count = count + 1         
                 self.msg_writer.send_message(event['channel'], str_final)
                 #algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
                 #entities = algo.pipe(msg_txt)
