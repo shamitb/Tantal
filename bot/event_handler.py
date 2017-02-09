@@ -86,16 +86,10 @@ class RtmEventHandler(object):
                 entities = algo.pipe(msg_txt)
                 str_final = ""
                 #print entities.result
-                count = 0;
                 for inner_l in entities.result:
                     for item in inner_l:
-                        if count == 0:
-                            pass
-                        else:
-                            str = item[0] + " - " + item[1] + ", "
-                            str_final += str
-                        count = count + 1    
-
+                        str = item[0] + " - " + item[1] + ", "
+                        str_final += str
                 self.msg_writer.send_message(event['channel'], str_final)
                 #algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
                 #entities = algo.pipe(msg_txt)            
