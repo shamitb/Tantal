@@ -66,7 +66,7 @@ class RtmEventHandler(object):
 #                   self.msg_writer.send_message(event['channel'], response)
                 client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')            
                 algo = client.algo('nlp/AutoTag/1.0.0')
-                tags = algo.pipe(text)
+                tags = algo.pipe(msg_txt)
                 str_final = ""
                 #print entities.result
                 for item in tags.result:
