@@ -9,7 +9,6 @@ from aylienapiclient import textapi
 
 logger = logging.getLogger(__name__)
 
-
 class RtmEventHandler(object):
     def __init__(self, slack_clients, msg_writer):
         self.clients = slack_clients
