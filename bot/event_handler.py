@@ -81,10 +81,10 @@ class RtmEventHandler(object):
                 #entities = algo.pipe(msg_txt)
             elif 'entity' in msg_txt:
                 client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
+                msg_txt.split(' ', 1)[1]
                 algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
                 entities = algo.pipe(msg_txt)
                 str_final = ""
-                str_final.split(' ', 1)[1]
                 #print entities.result
                 count = 0;
                 for inner_l in entities.result:
@@ -95,6 +95,7 @@ class RtmEventHandler(object):
                             str = item[0] + " - " + item[1] + ", "
                             str_final += str
                         count = count + 1    
+
                 self.msg_writer.send_message(event['channel'], str_final)
                 #algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
                 #entities = algo.pipe(msg_txt)            
