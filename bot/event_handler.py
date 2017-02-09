@@ -84,11 +84,12 @@ class RtmEventHandler(object):
                 algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
                 entities = algo.pipe(msg_txt)
                 str_final = ""
+                str_final.split(' ', 1)[1]
                 #print entities.result
                 count = 0;
                 for inner_l in entities.result:
                     for item in inner_l:
-                        if count == 0 and not self._is_direct_message(event['channel']):
+                        if count == 0:
                             pass
                         else:
                             str = item[0] + " - " + item[1] + ", "
