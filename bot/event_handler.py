@@ -81,7 +81,7 @@ class RtmEventHandler(object):
                 #entities = algo.pipe(msg_txt)
             elif 'entity' in msg_txt:
                 client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
-                msg_txt.split(' ', 1)[1]
+                msg_txt = msg_txt.split(' ', 1)[1]
                 algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
                 entities = algo.pipe(msg_txt)
                 str_final = ""
