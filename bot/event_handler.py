@@ -102,6 +102,15 @@ class RtmEventHandler(object):
                 sent_str = sent_str[:-1]
                 response = sent_str
                 self.msg_writer.send_message(event['channel'], response)
+
+            elif 'hashtag' in msg_txt:
+                client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
+                msg_txt = msg_txt.split(' ', 1)[1]
+                url = msg_txt
+                hashtags = client.Hashtags({"url": url})
+                response = ', '.join(hashtags['hashtags'])
+                self.msg_writer.send_message(event['channel'], response)
+                
             elif 'help' in msg_txt:
                 self.msg_writer.write_help_message(event['channel'])
             elif 'joke' in msg_txt:
