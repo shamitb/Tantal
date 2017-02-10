@@ -109,7 +109,12 @@ class RtmEventHandler(object):
                 url = msg_txt
                 hashtags = client.Hashtags({"url": url})
                 response = ', '.join(hashtags['hashtags'])
-                self.msg_writer.send_message(event['channel'], response)
+                str = ""
+                list = response.split(' ')
+                for i in range(0, 5):
+                    str += list[i]
+                    str += " "
+                self.msg_writer.send_message(event['channel'], str)
                 
             elif 'help' in msg_txt:
                 self.msg_writer.write_help_message(event['channel'])
