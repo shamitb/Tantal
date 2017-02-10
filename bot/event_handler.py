@@ -103,7 +103,7 @@ class RtmEventHandler(object):
                 response = sent_str
                 self.msg_writer.send_message(event['channel'], response)
 
-            elif 'hashtag' in msg_txt:
+            elif 'hash' in msg_txt:
                 client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
                 msg_txt = msg_txt.split(' ', 1)[1]
                 url = msg_txt
