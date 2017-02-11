@@ -106,6 +106,7 @@ class RtmEventHandler(object):
             elif 'hash' in msg_txt:
                 client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
                 msg_txt = msg_txt.split(' ', 1)[1]
+                msg_txt = msg_txt[1:-1]
                 url = msg_txt
                 hashtags = client.Hashtags({"url": url})
                 response = ', '.join(hashtags['hashtags'])
