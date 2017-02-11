@@ -108,6 +108,8 @@ class RtmEventHandler(object):
                 msg_txt = msg_txt.split(' ', 1)[1]
                 msg_txt = msg_txt[1:-1]
                 url = msg_txt
+                import re
+                url = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', url)
                 hashtags = client.Hashtags({"url": url})
                 response = ', '.join(hashtags['hashtags'])
                 str = ""
