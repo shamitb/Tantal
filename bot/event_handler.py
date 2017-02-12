@@ -92,7 +92,14 @@ class RtmEventHandler(object):
                         str_final += str
                 self.msg_writer.send_message(event['channel'], str_final)
                 #algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
-                #entities = algo.pipe(msg_txt)            
+                #entities = algo.pipe(msg_txt) 
+            elif 'IMAGE' in msg_txt or 'Image' in msg_txt or 'image' in msg_txt:
+                import re
+                url = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', msg_txt)
+                client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
+                algo = client.algo('deeplearning/InceptionNet/1.0.2')
+                tags = algo.pipe(url).result['tags'][0]['class']
+                self.msg_writer.send_message(event['channel'], tags)
             elif 'classify' in msg_txt:
                 client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
                 classifications = client.ClassifyByTaxonomy({"text": msg_txt, "taxonomy": "iab-qag"})
