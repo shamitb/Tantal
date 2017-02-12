@@ -98,7 +98,7 @@ class RtmEventHandler(object):
                 url = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', msg_txt)
                 client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
                 algo = client.algo('deeplearning/InceptionNet/1.0.2')
-                tags = algo.pipe(url).result['tags'][0]['class']
+                tags = string(algo.pipe(url).result['tags'][0]['class'])
                 self.msg_writer.send_message(event['channel'], tags)
             elif 'classify' in msg_txt:
                 client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
