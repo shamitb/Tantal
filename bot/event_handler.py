@@ -96,6 +96,7 @@ class RtmEventHandler(object):
             elif 'IMAGE' in msg_txt or 'Image' in msg_txt or 'image' in msg_txt:
                 import re
                 url = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', msg_txt)
+                url = ''.join(url)
                 client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
                 algo = client.algo('deeplearning/InceptionNet/1.0.2')
                 tags = algo.pipe(url).result['tags'][0]['class']
