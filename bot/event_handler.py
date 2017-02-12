@@ -99,7 +99,10 @@ class RtmEventHandler(object):
                 client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
                 algo = client.algo('deeplearning/InceptionNet/1.0.2')
                 tags = string(algo.pipe(url).result['tags'][0]['class'])
+                import unicodedata
+                tags = unicodedata.normalize('NFKD', tags).encode('ascii','ignore')
                 self.msg_writer.send_message(event['channel'], tags)
+            
             elif 'classify' in msg_txt:
                 client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
                 classifications = client.ClassifyByTaxonomy({"text": msg_txt, "taxonomy": "iab-qag"})
