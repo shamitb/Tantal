@@ -98,7 +98,7 @@ class RtmEventHandler(object):
                 url = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', msg_txt)
                 client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
                 algo = client.algo('deeplearning/InceptionNet/1.0.2')
-                tags = string(algo.pipe(url).result['tags'][0]['class'])
+                tags = algo.pipe(url).result['tags'][0]['class']
                 import unicodedata
                 tags = unicodedata.normalize('NFKD', tags).encode('ascii','ignore')
                 self.msg_writer.send_message(event['channel'], tags)
