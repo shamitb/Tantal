@@ -95,6 +95,8 @@ class RtmEventHandler(object):
                 #entities = algo.pipe(msg_txt) 
             elif 'IMAGE' in msg_txt or 'Image' in msg_txt or 'image' in msg_txt:
                 import re
+                msg_txt = msg_txt.split(' ', 1)[1]
+                msg_txt = msg_txt[1:-1]
                 url = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', msg_txt)
                 url = ''.join(url)
                 client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
