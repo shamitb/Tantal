@@ -105,7 +105,13 @@ class RtmEventHandler(object):
                 import unicodedata
                 tags = unicodedata.normalize('NFKD', tags).encode('ascii','ignore')
                 self.msg_writer.send_message(event['channel'], tags)
-            
+
+            elif 'POS' in msg_txt:                
+                from pattern.en import parse
+                s = msg_txt
+                s = parse(s, relations=True, lemmata=True)
+                self.msg_writer.send_message(event['channel'], s)
+                
             elif 'classify' in msg_txt:
                 client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
                 classifications = client.ClassifyByTaxonomy({"text": msg_txt, "taxonomy": "iab-qag"})
