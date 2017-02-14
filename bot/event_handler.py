@@ -108,6 +108,7 @@ class RtmEventHandler(object):
 
             elif 'POS' in msg_txt:                
                 from pattern.en import parse
+                msg_txt = msg_txt.split(' ', 1)[1]
                 s = msg_txt
                 s = parse(s, relations=True, lemmata=True)
                 self.msg_writer.send_message(event['channel'], s)
