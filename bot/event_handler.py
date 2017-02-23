@@ -84,6 +84,7 @@ class RtmEventHandler(object):
                 hello = tf.constant('Hello, TensorFlow!')
                 sess = tf.Session()
                 value = sess.run(hello)
+                self.msg_writer.send_message(event['channel'], value)
             elif 'entity' in msg_txt or 'Entity' in msg_txt or 'ENTITY' in msg_txt:
                 client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
                 msg_txt = msg_txt.split(' ', 1)[1]
