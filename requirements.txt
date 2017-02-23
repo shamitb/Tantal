@@ -13,3 +13,4 @@ websocket-client==0.35.0
 algorithmia>=1.0.0,<=2.0
 aylien-apiclient==0.6.0
 pattern==2.6
+tensorflow==1.0.0
