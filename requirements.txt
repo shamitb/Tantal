@@ -14,3 +14,4 @@ algorithmia>=1.0.0,<=2.0
 aylien-apiclient==0.6.0
 pattern==2.6
 tensorflow==1.0.0
+tkinter3000==1.1-20051211
