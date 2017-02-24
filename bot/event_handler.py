@@ -154,7 +154,7 @@ class RtmEventHandler(object):
             elif 'echo' in msg_txt:
                 self.msg_writer.send_message(event['channel'], msg_txt)
             else:
-                self.msg_writer.send_message(event['channel'], msg_txt)              
+                pass              
 
             return
 
