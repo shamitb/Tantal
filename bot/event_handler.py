@@ -128,6 +128,17 @@ class RtmEventHandler(object):
                 cf.destroy()
                 import os
                 os.system('convert output.ps output.png')
+                txt = "Grammar Tree:"
+                attachment = {
+                    "pretext": "Based on NLTK",
+                    "title": "Grammar tree frm text provided",
+                    "title_link": "https://nltk.org",
+                    "text": txt,
+                    "fallback": txt,
+                    "image_url": "output.png",
+                    "color": "#7CD197",
+                }
+                self.clients.web.chat.post_message(channel_id, txt, attachments=[attachment], as_user='true')
             
                 from pattern.en import parse
                 s = parse(s, relations=True, lemmata=True)
