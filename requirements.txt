@@ -1,7 +1,7 @@
 beepboop==0.1.1
 docutils==0.12
 lockfile==0.12.2
-nltk==3.2
+nltk==3.2.2
 python-daemon==2.1.1
 PyYAML==3.11
 requests==2.9.1
