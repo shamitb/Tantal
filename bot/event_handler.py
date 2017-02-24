@@ -32,7 +32,7 @@ class RtmEventHandler(object):
             self._handle_message(event)
         elif event_type == 'channel_joined':
             # you joined a channel
-            self.msg_writer.send_message(event['channel'], "Let's make America great again!")
+            self.msg_writer.send_message(event['channel'], "Welcome, Interact with the Tantal Slack bot ...")
         elif event_type == 'group_joined':
             # you joined a private group
             self.msg_writer.write_help_message(event['channel'])
