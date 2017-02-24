@@ -122,6 +122,8 @@ class RtmEventHandler(object):
                 from nltk.draw.util import CanvasFrame
                 from nltk.draw import TreeWidget
                 from nltk.corpus import treebank
+                from nltk.tree import Tree 
+                from nltk.draw.tree import TreeView
                 cf = CanvasFrame()
                 t = Tree.fromstring(s)
                 tc = TreeWidget(cf.canvas(),t)
