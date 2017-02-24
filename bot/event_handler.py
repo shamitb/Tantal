@@ -124,6 +124,20 @@ class RtmEventHandler(object):
                 from nltk.corpus import treebank
                 from nltk.tree import Tree 
                 from nltk.draw.tree import TreeView
+                import nltk.compat
+                try:
+                    import tkinter
+                except ImportError:
+                    import warnings
+                    warnings.warn("nltk.draw package not loaded "
+                                  "(please install Tkinter library).")
+                else:
+                    from nltk.draw.cfg import ProductionList, CFGEditor, CFGDemo
+                    from nltk.draw.tree import (TreeSegmentWidget, tree_to_treesegment,
+                                      TreeWidget, TreeView, draw_trees)
+                    from nltk.draw.table import Table
+
+                from nltk.draw.dispersion import dispersion_plot
                 cf = CanvasFrame()
                 t = Tree.fromstring(s)
                 tc = TreeWidget(cf.canvas(),t)
