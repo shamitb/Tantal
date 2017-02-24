@@ -126,7 +126,7 @@ class RtmEventHandler(object):
                 from nltk.draw.tree import TreeView
                 import nltk.compat
                 try:
-                    import tkinter
+                    import Tkinter
                 except ImportError:
                     import warnings
                     warnings.warn("nltk.draw package not loaded "
