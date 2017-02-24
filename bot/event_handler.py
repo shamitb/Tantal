@@ -113,9 +113,23 @@ class RtmEventHandler(object):
                 self.msg_writer.send_message(event['channel'], tags)
 
             elif 'POS' in msg_txt:                
-                from pattern.en import parse
+                
                 msg_txt = msg_txt.split(' ', 1)[1]
                 s = msg_txt
+                
+                from nltk import Tree
+                from nltk.draw.util import CanvasFrame
+                from nltk.draw import TreeWidget
+                cf = CanvasFrame()
+                t = Tree.fromstring(s)
+                tc = TreeWidget(cf.canvas(),t)
+                cf.add_widget(tc,10,10) # (10,10) offsets
+                cf.print_to_file('tree.ps')
+                cf.destroy()
+                import os
+                os.system('convert output.ps output.png')
+            
+                from pattern.en import parse
                 s = parse(s, relations=True, lemmata=True)
                 self.msg_writer.send_message(event['channel'], s)
                 
