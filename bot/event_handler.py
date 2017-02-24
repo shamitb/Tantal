@@ -2,6 +2,7 @@ import json
 import logging
 import random
 import Algorithmia
+import nltk
 
 from textblob import TextBlob
 from text_corpus import TextCorpus
@@ -120,6 +121,7 @@ class RtmEventHandler(object):
                 from nltk import Tree
                 from nltk.draw.util import CanvasFrame
                 from nltk.draw import TreeWidget
+                from nltk.corpus import treebank
                 cf = CanvasFrame()
                 t = Tree.fromstring(s)
                 tc = TreeWidget(cf.canvas(),t)
