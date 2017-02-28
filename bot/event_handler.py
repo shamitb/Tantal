@@ -54,7 +54,10 @@ class RtmEventHandler(object):
                 # e.g. user typed: "@pybot tell me a joke!"
             if 'sentiment' in msg_txt:
                 client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
-                sentiment = client.Sentiment({"text": msg_txt})
+                if 'http:' in msg_txt: 
+                    sentiment = client.Sentiment({"url": msg_txt})
+                else
+                    sentiment = client.Sentiment({"text": msg_txt})
                 str = sentiment['polarity']
                 str2 = " - %3.3f" % sentiment['polarity_confidence']
                 str += str2
