@@ -57,7 +57,7 @@ class RtmEventHandler(object):
                 if 'http:' in msg_txt or 'https:' in msg_txt : 
                     print 'URL'
                     sentiment = client.Sentiment({"url": msg_txt})
-                else
+                else:
                     sentiment = client.Sentiment({"text": msg_txt})
                 str = sentiment['polarity']
                 str2 = " - %3.3f" % sentiment['polarity_confidence']
