@@ -54,6 +54,7 @@ class RtmEventHandler(object):
                 # e.g. user typed: "@pybot tell me a joke!"
             if 'sentiment' in msg_txt:
                 client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
+                msg_txt = msg_txt.split(' ', 1)[1]
                 if 'http:' in msg_txt or 'https:' in msg_txt : 
                     print 'URL'
                     sentiment = client.Sentiment({"url": msg_txt})
