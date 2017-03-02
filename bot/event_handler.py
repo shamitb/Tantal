@@ -128,6 +128,7 @@ class RtmEventHandler(object):
                 client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
                 algo = client.algo('StanfordNLP/PartofspeechTagger/0.1.0')
                 s = algo.pipe(input).result
+                s = str(s)
                 self.msg_writer.send_message(event['channel'], s)
                 
             elif 'classify' in msg_txt:
