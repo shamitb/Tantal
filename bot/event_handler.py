@@ -123,47 +123,6 @@ class RtmEventHandler(object):
                 
                 msg_txt = msg_txt.split(' ', 1)[1]
                 s = msg_txt
-                
-                from nltk import Tree
-                from nltk.draw.util import CanvasFrame
-                from nltk.draw import TreeWidget
-                from nltk.corpus import treebank
-                from nltk.tree import Tree 
-                from nltk.draw.tree import TreeView
-                import nltk.compat
-                try:
-                    import Tkinter
-                except ImportError:
-                    import warnings
-                    warnings.warn("nltk.draw package not loaded "
-                                  "(please install Tkinter library).")
-                else:
-                    from nltk.draw.cfg import ProductionList, CFGEditor, CFGDemo
-                    from nltk.draw.tree import (TreeSegmentWidget, tree_to_treesegment,
-                                      TreeWidget, TreeView, draw_trees)
-                    from nltk.draw.table import Table
-
-                from nltk.draw.dispersion import dispersion_plot
-                cf = CanvasFrame()
-                t = Tree.fromstring(s)
-                tc = TreeWidget(cf.canvas(),t)
-                cf.add_widget(tc,10,10) # (10,10) offsets
-                cf.print_to_file('tree.ps')
-                cf.destroy()
-                import os
-                os.system('convert output.ps output.png')
-                txt = "Grammar Tree:"
-                attachment = {
-                    "pretext": "Based on NLTK",
-                    "title": "Grammar tree frm text provided",
-                    "title_link": "https://nltk.org",
-                    "text": txt,
-                    "fallback": txt,
-                    "image_url": "output.png",
-                    "color": "#7CD197",
-                }
-                self.clients.web.chat.post_message(channel_id, txt, attachments=[attachment], as_user='true')
-            
                 from pattern.en import parse
                 s = parse(s, relations=True, lemmata=True)
                 self.msg_writer.send_message(event['channel'], s)
