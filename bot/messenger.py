@@ -49,7 +49,7 @@ class Messenger(object):
         self.send_message(channel_id, txt)
 
     def demo_attachment(self, channel_id):
-        txt = "Beep Beep Boop is a ridiculously simple hosting platform for your Slackbots."
+        txt = "Tantal is your intelligent slackbot!"
         attachment = {
             "pretext": "We bring bots to life. :sunglasses: :thumbsup:",
             "title": "Text Analytics bot here!",
@@ -62,6 +62,7 @@ class Messenger(object):
         self.clients.web.chat.post_message(channel_id, txt, attachments=[attachment], as_user='true')
         
     def demo_button(self, channel_id):
+        txt = "Tantal is your intelligent slackbot!"
         attachment = {
             "text": "Would you like to play a game?",
             "attachments": [
