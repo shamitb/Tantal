@@ -163,6 +163,8 @@ class RtmEventHandler(object):
                 self.msg_writer.write_joke(event['channel'])
             elif 'attachment' in msg_txt:
                 self.msg_writer.demo_attachment(event['channel'])
+            elif 'button' in msg_txt:
+                self.msg_writer.demo_button(event['channel'])
             elif 'echo' in msg_txt:
                 self.msg_writer.send_message(event['channel'], msg_txt)
             else:
