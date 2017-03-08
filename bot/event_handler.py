@@ -92,6 +92,19 @@ class RtmEventHandler(object):
                 sess = tf.Session()
                 value = sess.run(hello)
                 self.msg_writer.send_message(event['channel'], value)
+            elif 'ocr' in msg_txt:
+                msg_txt = msg_txt.split(' ', 1)[1]
+                msg_txt = msg_txt[1:-1]
+                input = {"src":msg_txt,
+                "hocr":{
+                "tessedit_create_hocr":1,
+                "tessedit_pageseg_mode":1,
+                "tessedit_char_whitelist":"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-@/.,:()!?"}}
+                client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
+                algo = client.algo('tesseractocr/OCR/0.1.0')
+                words = algo.pipe(input).result['result']
+                value = words.rstrip('\n')
+                self.msg_writer.send_message(event['channel'], value)
             elif 'entity' in msg_txt or 'Entity' in msg_txt or 'ENTITY' in msg_txt:
                 client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
                 msg_txt = msg_txt.split(' ', 1)[1]
