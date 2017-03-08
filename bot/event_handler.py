@@ -92,7 +92,7 @@ class RtmEventHandler(object):
                 sess = tf.Session()
                 value = sess.run(hello)
                 self.msg_writer.send_message(event['channel'], value)
-            elif 'ocr' in msg_txt:
+            elif 'ocr' in msg_txt or 'OCR' in msg_txt:
                 msg_txt = msg_txt.split(' ', 1)[1]
                 msg_txt = msg_txt[1:-1]
                 input = {"src":msg_txt,
