@@ -165,7 +165,7 @@ class RtmEventHandler(object):
                 response = ', '.join(hashtags['hashtags'])
                 str = ""
                 list = response.split(' ')
-                for i in range(0, 5):
+                for i in range(0, 3):
                     str += list[i]
                     str += " "
                 self.msg_writer.send_message(event['channel'], str)
