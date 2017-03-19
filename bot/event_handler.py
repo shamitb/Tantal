@@ -143,7 +143,7 @@ class RtmEventHandler(object):
                 client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
                 algo = client.algo('ApacheOpenNLP/POSTagger/0.1.1')
                 response = algo.pipe(s).result
-                response = str(response)
+                #response = str(response)
                 self.msg_writer.send_message(event['channel'], response)
                 
             elif 'classify' in msg_txt:
