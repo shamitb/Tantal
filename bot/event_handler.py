@@ -137,12 +137,12 @@ class RtmEventHandler(object):
                 msg_txt = msg_txt.split(' ', 1)[1]
                 s = msg_txt
                 from pattern.en import parse
-                #response = parse(s, relations=True, lemmata=True)
+                response = parse(s, relations=True, lemmata=False)
                 #client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
                 #algo = client.algo('StanfordNLP/PartofspeechTagger/0.1.0')
-                client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
-                algo = client.algo('ApacheOpenNLP/POSTagger/0.1.1')
-                response = algo.pipe(s).result
+                #client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
+                #algo = client.algo('ApacheOpenNLP/POSTagger/0.1.1')
+                #response = algo.pipe(s).result
                 #response = str(response)
                 self.msg_writer.send_message(event['channel'], response)
                 
