@@ -137,7 +137,7 @@ class RtmEventHandler(object):
                 msg_txt = msg_txt.split(' ', 1)[1]
                 s = msg_txt
                 from pattern.en import parse
-                response = parse(s, relations=True, lemmata=False)
+                response = parse(s, relations=False, lemmata=False)
                 #client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
                 #algo = client.algo('StanfordNLP/PartofspeechTagger/0.1.0')
                 #client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
