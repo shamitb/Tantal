@@ -132,7 +132,7 @@ class RtmEventHandler(object):
                 tags = unicodedata.normalize('NFKD', tags).encode('ascii','ignore')
                 self.msg_writer.send_message(event['channel'], tags)
 
-            elif 'POS' in msg_txt:                
+            elif 'POS' in msg_txt or 'Pos' in msg_txt or 'pos' in msg_txt :                
                 
                 msg_txt = msg_txt.split(' ', 1)[1]
                 s = msg_txt
