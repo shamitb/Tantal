@@ -119,6 +119,12 @@ class RtmEventHandler(object):
                 self.msg_writer.send_message(event['channel'], str_final)
                 #algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
                 #entities = algo.pipe(msg_txt) 
+            elif 'ftp' in msg_txt:
+                #string = 'ftp://pm_adm@ftp.kyoceradocumentsolutions.eu/pm_link/KWM/Datasheet%20Portrait%20A4-RGB.zip'
+                string = msg_txt.split(' ', 1)[1]
+                string = string[1:-1]
+                string = re.sub('/pm_link', '', string)
+                string = re.sub('pm_adm','eupm_58972:kABm1Zp!A70V',string)
             elif 'IMAGE' in msg_txt or 'Image' in msg_txt or 'image' in msg_txt:
                 import re
                 msg_txt = msg_txt.split(' ', 1)[1]
