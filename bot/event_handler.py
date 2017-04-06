@@ -192,7 +192,7 @@ class RtmEventHandler(object):
             elif 'echo' in msg_txt:
                 self.msg_writer.send_message(event['channel'], msg_txt)
             else:
-                pass              
+                self.msg_writer.send_message(event['channel'], 'What do you want me to do? Find out more at http://nlpapps.nl')              
 
             return
 
