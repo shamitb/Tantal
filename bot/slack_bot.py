@@ -57,8 +57,14 @@ class SlackBot(object):
                 self.clients.rtm.server.login_data['team']['name'],
                 self.clients.rtm.server.domain))
 
-            msg_writer = Messenger(self.clients)
-            event_handler = RtmEventHandler(self.clients, msg_writer)
+            try:
+                msg_writer = Messenger(self.clients)
+                event_handler = RtmEventHandler(self.clients, msg_writer)
+            except:
+                err_msg = traceback.format_exc()
+                logging.error('Unexpected error: {}'.format(err_msg))
+                # ignore: msg_writer.write_error(event['channel'], err_msg)
+                continue    
 
             while self.keep_running:
                 for event in self.clients.rtm.rtm_read():
