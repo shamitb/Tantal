@@ -64,7 +64,6 @@ class SlackBot(object):
                 err_msg = traceback.format_exc()
                 logging.error('Unexpected error: {}'.format(err_msg))
                 # ignore: msg_writer.write_error(event['channel'], err_msg)
-                continue    
 
             while self.keep_running:
                 for event in self.clients.rtm.rtm_read():
