@@ -7,7 +7,7 @@ import nltk
 from textblob import TextBlob
 from text_corpus import TextCorpus
 from aylienapiclient import textapi
-import tensorflow as tf
+
 
 logger = logging.getLogger(__name__)
 
@@ -47,11 +47,6 @@ class RtmEventHandler(object):
 
             msg_txt = event['text']
 
-            #if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
-                #txt_b = TextBlob(msg_txt)
-            
-            #if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
-                # e.g. user typed: "@pybot tell me a joke!"
             if 'sentiment' in msg_txt:
                 client = textapi.Client("a19bb245", "2623b77754833e2711998a0b0bdad9db")
                 msg_txt = msg_txt.split(' ', 1)[1]
@@ -65,12 +60,8 @@ class RtmEventHandler(object):
                 str2 = " - %3.3f" % sentiment['polarity_confidence']
                 str += str2
                 self.msg_writer.send_message(event['channel'], str)
+                
             elif 'tag' in msg_txt:
-                #self.msg_writer.write_analytics(event['channel'], msg_txt)
-                #if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
-                #txt_b = TextBlob(msg_txt)
-#                   response = txt_b.tags
-#                   self.msg_writer.send_message(event['channel'], response)
                 count = 0;
                 client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')            
                 algo = client.algo('nlp/AutoTag/1.0.0')
@@ -92,6 +83,7 @@ class RtmEventHandler(object):
                 sess = tf.Session()
                 value = sess.run(hello)
                 self.msg_writer.send_message(event['channel'], value)
+                
             elif 'ocr' in msg_txt or 'OCR' in msg_txt:
                 msg_txt = msg_txt.split(' ', 1)[1]
                 msg_txt = msg_txt[1:-1]
@@ -105,6 +97,7 @@ class RtmEventHandler(object):
                 words = algo.pipe(input).result['result']
                 value = words.rstrip('\n')
                 self.msg_writer.send_message(event['channel'], value)
+                
             elif 'entity' in msg_txt or 'Entity' in msg_txt or 'ENTITY' in msg_txt:
                 client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
                 msg_txt = msg_txt.split(' ', 1)[1]
@@ -117,8 +110,7 @@ class RtmEventHandler(object):
                         str = item[0] + " - " + item[1] + ", "
                         str_final += str
                 self.msg_writer.send_message(event['channel'], str_final)
-                #algo = client.algo('StanfordNLP/NamedEntityRecognition/0.2.0')
-                #entities = algo.pipe(msg_txt) 
+
             elif 'ftp' in msg_txt or 'FTP' in msg_txt:
                 import re
                 #string = 'ftp://pm_adm@ftp.kyoceradocumentsolutions.eu/pm_link/KWM/Datasheet%20Portrait%20A4-RGB.zip'
@@ -127,6 +119,7 @@ class RtmEventHandler(object):
                 string = re.sub('/pm_link', '', string)
                 string = re.sub('pm_adm','eupm_58972:kABm1Zp!A70V',string)
                 self.msg_writer.send_message(event['channel'], string)
+                
             elif 'IMAGE' in msg_txt or 'Image' in msg_txt or 'image' in msg_txt:
                 import re
                 msg_txt = msg_txt.split(' ', 1)[1]
@@ -146,12 +139,6 @@ class RtmEventHandler(object):
                 s = msg_txt
                 from pattern.en import parse
                 response = parse(s, relations=False, lemmata=False)
-                #client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
-                #algo = client.algo('StanfordNLP/PartofspeechTagger/0.1.0')
-                #client = Algorithmia.client('sim3x6PzEv6m2icRR+23rqTTcOo1')
-                #algo = client.algo('ApacheOpenNLP/POSTagger/0.1.1')
-                #response = algo.pipe(s).result
-                #response = str(response)
                 self.msg_writer.send_message(event['channel'], response)
                 
             elif 'classify' in msg_txt:
