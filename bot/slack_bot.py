@@ -8,6 +8,7 @@ from slack_clients import SlackClients
 from messenger import Messenger
 from event_handler import RtmEventHandler
 from text_corpus import gen_text_corpus
+from slacker import Slacker
 
 logger = logging.getLogger(__name__)
 
